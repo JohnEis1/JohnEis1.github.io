@@ -1,28 +1,281 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A clean, minimal personal portfolio." />
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A clean, minimal personal portfolio.">
     <title>Cleanfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+      body {
+        background-color: #030408 !important;
+        color: #cbd5e1;
+        position: relative;
+        min-height: 100vh;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background-image:
+          radial-gradient(1.5px 1.5px at 10% 12%, #ffffff 100%, transparent),
+          radial-gradient(2px 2px at 25% 38%, #ffffff 100%, transparent),
+          radial-gradient(1px 1px at 42% 18%, #ffffff 100%, transparent),
+          radial-gradient(2.5px 2.5px at 60% 24%, #e0e7ff 100%, transparent),
+          radial-gradient(1.5px 1.5px at 75% 8%, #ffffff 100%, transparent),
+          radial-gradient(2px 2px at 88% 30%, #ffffff 100%, transparent),
+          radial-gradient(1px 1px at 94% 15%, #ffffff 100%, transparent),
+          radial-gradient(2px 2px at 15% 70%, #ffffff 100%, transparent),
+          radial-gradient(1.5px 1.5px at 32% 82%, #e0e7ff 100%, transparent),
+          radial-gradient(2.5px 2.5px at 50% 64%, #ffffff 100%, transparent),
+          radial-gradient(1px 1px at 68% 85%, #ffffff 100%, transparent),
+          radial-gradient(2px 2px at 82% 60%, #ffffff 100%, transparent),
+          radial-gradient(1.5px 1.5px at 92% 78%, #ffffff 100%, transparent),
+          radial-gradient(3px 3px at 70% 45%, #ffffff 100%, transparent),
+          radial-gradient(1.5px 1.5px at 20% 50%, #ffffff 100%, transparent),
+          radial-gradient(circle 850px at 50% 15%, rgba(30, 58, 138, 0.18), transparent 75%);
+        background-size: 100% 100%;
+        animation: starTwinkle 4s ease-in-out infinite alternate;
+      }
+      @keyframes starTwinkle {
+        0% { opacity: 0.55; }
+        100% { opacity: 0.95; }
+      }
+      .app.dark {
+        --clr-bg: #030408;
+        --clr-bg-alt: #0a0e1a;
+        --clr-fg: #cbd5e1;
+        --clr-fg-alt: #f8fafc;
+        --clr-primary: #93c5fd;
+        background-color: transparent !important;
+      }
+      .header h3 .link {
+        color: #f8fafc;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .nav__list-item .link--nav {
+        color: #94a3b8;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+      .nav__list-item .link--nav:hover {
+        color: #93c5fd;
+      }
+      .about__picture {
+        border: 2px solid rgba(147, 197, 253, 0.25);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(147, 197, 253, 0.15);
+      }
+      .about__name {
+        background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px rgba(147, 197, 253, 0.35);
+      }
+      .about__role {
+        color: #94a3b8;
+        font-weight: 400;
+      }
+      .about__desc {
+        color: #cbd5e1;
+        line-height: 1.7;
+      }
+      .btn--outline {
+        color: #f8fafc;
+        border: 1px solid rgba(147, 197, 253, 0.45);
+        background: rgba(147, 197, 253, 0.08);
+        border-radius: 9999px;
+        padding: 0.7rem 1.6rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        backdrop-filter: blur(8px);
+        transition: all 0.25s ease;
+        display: inline-block;
+      }
+      .btn--outline:hover {
+        background: #93c5fd;
+        color: #030408;
+        border-color: #93c5fd;
+        box-shadow: 0 0 24px rgba(147, 197, 253, 0.5);
+        transform: translateY(-2px);
+      }
+      .icon {
+        filter: invert(1) brightness(0.85);
+        transition: filter 0.2s ease, transform 0.2s ease;
+      }
+      .link--icon:hover .icon {
+        filter: invert(1) brightness(1.2) drop-shadow(0 0 8px rgba(147, 197, 253, 0.7));
+        transform: scale(1.12);
+      }
+      .section__title {
+        color: #f8fafc;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        position: relative;
+        padding-bottom: 0.75rem;
+      }
+      .section__title::after {
+        content: "";
+        display: block;
+        width: 44px;
+        height: 3px;
+        background: linear-gradient(90deg, #93c5fd, transparent);
+        margin: 0.6rem auto 0;
+        border-radius: 2px;
+      }
+      .projects__grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2em;
+      }
+      .projects__grid > .project {
+        flex: 1 1 300px;
+        max-width: 350px;
+      }
+      .project {
+        background: rgba(15, 23, 42, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 16px;
+        padding: 1.5rem;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .project:hover {
+        transform: translateY(-5px);
+        border-color: rgba(147, 197, 253, 0.35);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(147, 197, 253, 0.12);
+      }
+      .project img {
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .project h3 {
+        color: #f8fafc;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .project__description {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .project__stack-item {
+        background: rgba(147, 197, 253, 0.08);
+        color: #93c5fd;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        border-radius: 6px;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+      .skills {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        border-radius: 20px;
+        padding: 4.5rem 1.5rem;
+        background: radial-gradient(circle at 50% 0%, rgba(30, 41, 59, 0.4), rgba(11, 15, 25, 0.65));
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(12px);
+      }
+      .skills .section__title {
+        position: relative;
+        z-index: 2;
+        color: #f8fafc;
+      }
+      .skills__list {
+        position: relative;
+        z-index: 2;
+        gap: 0.75rem;
+      }
+      .skills .skills__list-item {
+        background: rgba(255, 255, 255, 0.06);
+        color: #f1f5f9;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+        backdrop-filter: blur(8px);
+        padding: 0.55rem 1.3rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .skills .skills__list-item:hover {
+        background: rgba(147, 197, 253, 0.16);
+        border-color: #93c5fd;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(147, 197, 253, 0.25);
+      }
+      .footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 3rem 1rem;
+      }
+      .footer__link {
+        color: #64748b;
+        transition: color 0.2s ease;
+      }
+      .footer__link:hover {
+        color: #93c5fd;
+      }
+      .hobbies__gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hobby-photo {
+        margin: 0;
+        flex: 1 1 240px;
+        max-width: 280px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .hobby-photo:hover {
+        transform: translateY(-4px);
+        border-color: rgba(147, 197, 253, 0.35);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(147, 197, 253, 0.15);
+      }
+      .hobby-photo img {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        display: block;
+      }
+      .hobby-photo figcaption {
+        padding: 0.8rem 1rem;
+        color: #cbd5e1;
+        font-size: 0.88rem;
+        text-align: center;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
-    <div class="app light" id="top">
+    <div class="app dark" id="top">
       <header class="header center">
-        <h3><a href="#top" class="link">YN.</a></h3>
+        <h3><a href="#top" class="link">JE.</a></h3>
         <nav class="center nav" aria-label="Primary">
           <ul class="nav__list">
             <li class="nav__list-item"><a href="#about" class="link link--nav">About</a></li>
             <li class="nav__list-item"><a href="#projects" class="link link--nav">Projects</a></li>
-            <li class="nav__list-item"><a href="#skills" class="link link--nav">Skills</a></li>
+            <li class="nav__list-item"><a href="#skills" class="link link--nav">Hobbies</a></li>
+            <li class="nav__list-item"><a href="#creations" class="link link--nav">Creations</a></li>
             <li class="nav__list-item"><a href="#contact" class="link link--nav">Contact</a></li>
           </ul>
         </nav>
@@ -31,25 +284,19 @@
       <main>
         <div class="about center" id="about">
           <div class="about__header">
-            <img src="assets/img/avatar.svg" alt="name title" class="about__picture" />
+            <img src="assets/uploads/upload-1792483440769-171231113.png" alt="name title" class="about__picture" style="border-radius: 12px;">
             <div class="about__intro">
-              <h1>Hi, I'm <span class="about__name">Your Website.</span></h1>
-              <h2 class="about__role">I'm a website.</h2>
-              <p class="about__desc">
-                Have fun with the website! Try the AI assistant, it's really useful. 
-                You can double-click the tab name to change it. See the settings gear to add a custom domain (yourname.com).
-
-              </p>
+              <h1>Yo, I'm <span style="color: rgb(147, 197, 253);">John Eis</span></h1>
+              <h2 class="about__role">and I hope you're having a great day :)</h2>
+              <p class="about__desc">I’m an electrical engineer, and I love making things! From desks and Nerf blasters to MCUs and ultracold atoms.</p>
             </div>
           </div>
 
           <div class="about__contact center">
-            <a href="https://goatedwebsite.com/default-link"><span class="btn btn--outline">Resume</span></a>
-            <a href="https://goatedwebsite.com/default-link" aria-label="github" class="link link--icon">
-              <img src="assets/img/github.svg" alt="GitHub" class="icon" />
-            </a>
-            <a href="https://goatedwebsite.com/default-link" aria-label="linkedin" class="link link--icon">
-              <img src="assets/img/linkedin.svg" alt="LinkedIn" class="icon" />
+            <a href="https://docs.google.com/document/d/1rMSo6NsHJsRLutTBcxktFWkgRzrJzIuj58MnAUwxcn4/edit?tab=t.0" class=""><span class="btn btn--outline">Resume</span></a>
+
+            <a href="https://www.linkedin.com/in/johneis/" aria-label="linkedin" class="link link--icon">
+              <img src="assets/img/linkedin.svg" alt="LinkedIn" class="icon">
             </a>
           </div>
         </div>
@@ -57,85 +304,140 @@
         <section id="projects" class="section projects">
           <h2 class="section__title">Projects</h2>
 
+          
+        <div class="projects__grid">
+            
+
+            <div class="project">
+              <img src="assets/uploads/upload-1792115811913-571895341.jpg" alt="Project 1 screenshot" style="width: 100%; object-fit: cover">
+              <h3>FM &amp; AM Control Circuits</h3>
+              <p class="project__description">Had to make constrained design choices based on available parts to design FM and AM circuits and there enclosure to driver hardware components and progress physics research.&nbsp;</p>
+              <ul class="project__stack">
+                <li class="project__stack-item">Soldering</li>
+                <li class="project__stack-item">Datasheet Analysis</li>
+                <li class="project__stack-item">Circuits Theory</li>
+              </ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
+              </a>
+            </div><div class="project">
+              <img src="assets/uploads/upload-1792481452301-749301547.webp" alt="Project 2 screenshot" style="width: 100%; object-fit: cover">
+              <h3>OTTER Micro Controller</h3>
+              <p class="project__description">The BASYS 3 board(FPGA board) I used to test my OTTER. I wrote the OTTER from scratch in SystemVerilog building block by block. Then spent many hours debugging it in Xilinx Vivado.</p>
+              <ul class="project__stack">
+                <li class="project__stack-item">SystemVerilog</li>
+                <li class="project__stack-item">Xilinx Vivado</li>
+                <li class="project__stack-item">RISC-V Assembly</li>
+              </ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="source code" class="link link--icon">
+                <img src="assets/img/github.svg" alt="Source code" class="icon">
+              </a>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
+              </a>
+            </div><div class="project">
+              <img src="assets/uploads/upload-1792401416251-988266512.jpg" alt="Project 3 screenshot" style="width: 100%; object-fit: cover">
+              <h3>DAC</h3>
+              <p class="project__description">Simulated in LTSpice and validated waveforms on an oscilloscope. Designed and printed prototype PCB using Fusion 360, soldered components with iron and reflow oven. The circuit included Arduino-driven binary inputs and a summming amplifer circuit to flip and "shrink" signal.</p>
+              <ul class="project__stack">
+                <li class="project__stack-item">Fusion 360</li>
+                <li class="project__stack-item">LTspice</li>
+                <li class="project__stack-item">Reflow oven</li>
+              </ul>
+              <a href="https://docs.google.com/document/d/1M-E76AAjXJhA6R3BQMdiUBDUmaIUDJpRsiJNVrcWBK8/edit?tab=t.0" aria-label="live preview" class="link link--icon">               Report           </a>
+            </div>
+
+            
+
+            <div class="project">
+              <img src="assets/uploads/upload-1792482459784-430851268.png" alt="Project 4 screenshot" style="width: 171px; object-fit: cover; height: 267px; flex-shrink: 0; max-width: none; display: block; margin-left: auto; margin-right: auto;">
+              <h3>Signal Control Box</h3>
+              <p class="project__description">Created a control box for shutter drivers and DC power supplies, while specifically designing circuits for safety precautions in order to send the right signals at the right time without damaging any optics equipment.</p>
+              <ul class="project__stack"></ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
+              </a>
+            </div>
+
+            <div class="project">
+              <img src="assets/uploads/upload-1792526640531-594389377.png" alt="Project 5 screenshot" style="width: 100%; object-fit: cover">
+              <h3>Ultra"cool" Poster</h3>
+              <p class="project__description">Selected Important topics, technical terms and depictions to help me present my teams work in an understandable way. Then organized the information in a manor I believe "easy" to follow. Gave presentations at multiple colloquiums.&nbsp;</p>
+              <ul class="project__stack"></ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
+              </a>
+            </div>
+
+            
+          <div class="project">
+              <img src="assets/uploads/upload-1792519898000-392332559.jpg" alt="Project 6 screenshot" style="width: 100%; object-fit: cover">
+              <h3>Path Finding Guy</h3>
+              <p class="project__description">Designed the robot using DC motors, a motion sensor, dual motor drivers (for Arduino current protection), body + wheels found on Amazon and programmed the whole thing on the Arduino in C++. Soldered and wired the whole thing together. The robot autonomously avoids obstacles.</p>
+              <ul class="project__stack">
+                <li class="project__stack-item">Ardunio IDE</li>
+              </ul>
+
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
+              </a>
+            </div></div></section>
+
+        <section class="section skills" id="skills">
+          <h2 class="section__title">Hobbies</h2>
+          
+          <ul class="skills__list">
+            <li class="skills__list-item btn btn--plain">soccer</li><li class="skills__list-item btn btn--plain">skating</li>
+            <li class="skills__list-item btn btn--plain">keep up</li>
+            <li class="skills__list-item btn btn--plain">piano</li>
+            <li class="skills__list-item btn btn--plain">hiking/swimming</li>
+            <li class="skills__list-item btn btn--plain">drawing</li>
+            <li class="skills__list-item btn btn--plain">guitar</li>
+            <li class="skills__list-item btn btn--plain">biking</li>
+          </ul>
+
+          
+        </section>
+
+        <section id="creations" class="section projects">
+          <h2 class="section__title">Creations(just a few)</h2>
+
           <div class="projects__grid">
+            
+
             <div class="project">
-              <img src="assets/img/project.svg" alt="Project 1 screenshot" style="width: 100%; object-fit: cover" />
-              <h3>Project 1</h3>
-              <p class="project__description">
-                Amet asperiores et impedit aliquam consectetur. Voluptates sed a nulla ipsa
-                officia et esse aliquam.
-              </p>
-              <ul class="project__stack">
-                <li class="project__stack-item">SASS</li>
-                <li class="project__stack-item">TypeScript</li>
-                <li class="project__stack-item">React</li>
-              </ul>
-              <a href="https://goatedwebsite.com/default-link" aria-label="source code" class="link link--icon">
-                <img src="assets/img/github.svg" alt="Source code" class="icon" />
+              <img src="assets/uploads/upload-1792565221914-199132771.png" alt="Creation 1 screenshot" style="width: 100%; object-fit: cover">
+              <h3>Desk</h3>
+              <p class="project__description">Designed desk architecture, then cut, drilled, and sanded it all together.&nbsp;</p>
+              <ul class="project__stack"></ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
               </a>
-              <a href="https://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
-                <img src="assets/img/external.svg" alt="Live preview" class="icon" />
+            </div><div class="project">
+              <img src="assets/uploads/upload-1792565241200-808081366.jpeg" alt="Creation 2 screenshot" style="width: 100%; object-fit: cover">
+              <h3>The Raven</h3>
+              <p class="project__description">High power circuit design using an () LIPO. Custom internals, including circuit design for both an interactive light up mode and constant display mode(featured above is the "interactive mode"). It was also sanded and spray painted</p>
+              <ul class="project__stack"></ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
               </a>
             </div>
 
             <div class="project">
-              <img src="assets/img/project.svg" alt="Project 2 screenshot" style="width: 100%; object-fit: cover" />
-              <h3>Project 2</h3>
-              <p class="project__description">
-                You can add more tags below by pressing enter while editing a tag. Same with the skills in the next section.
-              </p>
-              <ul class="project__stack">
-                <li class="project__stack-item">SASS</li>
-                <li class="project__stack-item">TypeScript</li>
-                <li class="project__stack-item">React</li>
-              </ul>
-              <a href="https://goatedwebsite.com/default-link" aria-label="source code" class="link link--icon">
-                <img src="assets/img/github.svg" alt="Source code" class="icon" />
-              </a>
-              <a href="https://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
-                <img src="assets/img/external.svg" alt="Live preview" class="icon" />
-              </a>
-            </div>
-
-            <div class="project">
-              <img src="assets/img/project.svg" alt="Project 3 screenshot" style="width: 100%; object-fit: cover" />
-              <h3>Project 3</h3>
-              <p class="project__description">
-                Amet asperiores et impedit aliquam consectetur. Voluptates sed a nulla ipsa
-                officia et esse aliquam.
-              </p>
-              <ul class="project__stack">
-                <li class="project__stack-item">SASS</li>
-                <li class="project__stack-item">TypeScript</li>
-                <li class="project__stack-item">React</li>
-              </ul>
-              <a href="https://goatedwebsite.com/default-link" aria-label="source code" class="link link--icon">
-                <img src="assets/img/github.svg" alt="Source code" class="icon" />
-              </a>
-              <a href="https://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
-                <img src="assets/img/external.svg" alt="Live preview" class="icon" />
+              <img src="assets/uploads/upload-1792565196286-338709482.png" alt="Creation 3 screenshot" style="width: 100%; object-fit: cover">
+              <h3>Phase 1 Helemet</h3>
+              <p class="project__description">3D printed PCA on a bamboo printer, sanded, spray painted, then glued together.</p>
+              <ul class="project__stack"></ul>
+              <a href="http://goatedwebsite.com/default-link" aria-label="live preview" class="link link--icon">
+                <img src="assets/img/external.svg" alt="Live preview" class="icon">
               </a>
             </div>
           </div>
         </section>
 
-        <section class="section skills" id="skills">
-          <h2 class="section__title">Skills</h2>
-          <ul class="skills__list">
-            <li class="skills__list-item btn btn--plain">HTML</li>
-            <li class="skills__list-item btn btn--plain">CSS</li>
-            <li class="skills__list-item btn btn--plain">JavaScript</li>
-            <li class="skills__list-item btn btn--plain">TypeScript</li>
-            <li class="skills__list-item btn btn--plain">React</li>
-            <li class="skills__list-item btn btn--plain">Redux</li>
-            <li class="skills__list-item btn btn--plain">SASS</li>
-            <li class="skills__list-item btn btn--plain">Git</li>
-          </ul>
-        </section>
-
         <section class="section contact center" id="contact">
           <h2 class="section__title">Contact</h2>
-          <a href="mailto:johnsmith@mail.com"><span class="btn btn--outline">Email me</span></a>
+          <a href="mailto:johnsmith@mail.com" class=""><span class="btn btn--outline">Email me</span></a>
         </section>
       </main>
 
@@ -143,5 +445,6 @@
         <a href="https://github.com/rjshkhr/cleanfolio" class="link footer__link">Built with Cleanfolio</a>
       </footer>
     </div>
-  </body>
-</html>
+  
+
+</body></html>
